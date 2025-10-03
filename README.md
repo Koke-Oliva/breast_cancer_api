@@ -80,8 +80,6 @@ breast_cancer_api/
 
 
 
----
-
 ## ✅ Conclusiones
 Este proyecto demuestra un flujo **end-to-end en MLOps**:
 - Entrenamiento y versionado de modelos.
@@ -90,4 +88,4 @@ Este proyecto demuestra un flujo **end-to-end en MLOps**:
 - Pruebas automatizadas.
 - Despliegue continuo con GitHub Actions y publicación en GHCR.
 
----
+
