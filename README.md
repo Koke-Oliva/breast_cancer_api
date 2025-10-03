@@ -60,22 +60,24 @@ La imagen Docker se publica automáticamente en **GitHub Container Registry (GHC
 
 ## 📂 Estructura del Proyecto
 
+```bash
 breast_cancer_api/
-│
-├── artifacts/ # Modelos entrenados (model.pkl)
-├── img/ # Evidencias en imágenes para README
+├── artifacts/              # Modelos entrenados (model.pkl)
+├── img/                    # Evidencias en imágenes para README
 ├── src/
-│ ├── api/ # Código API
-│ │ ├── training.py # Entrenamiento del modelo
-│ │ ├── routes.py # Endpoints API
-│ │ └── model.py # Carga del modelo y predicciones
-│ ├── tests/ # Tests unitarios
-│ └── main.py # Punto de entrada Flask
-│
-├── .github/workflows/ci.yml # Workflow CI/CD
-├── requirements.txt # Dependencias
-├── Dockerfile # Imagen Docker
-└── README.md # Documentación
+│   ├── api/                # Código API
+│   │   ├── training.py     # Entrenamiento del modelo
+│   │   ├── routes.py       # Endpoints API
+│   │   └── model.py        # Carga del modelo y predicciones
+│   ├── tests/              # Tests unitarios
+│   └── main.py             # Punto de entrada Flask
+├── .github/
+│   └── workflows/
+│       └── ci.yml          # Workflow CI/CD
+├── requirements.txt        # Dependencias
+├── Dockerfile              # Imagen Docker
+└── README.md               # Documentación
+
 
 
 ---
