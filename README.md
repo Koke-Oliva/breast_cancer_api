@@ -58,7 +58,7 @@ La imagen Docker se publica automáticamente en **GitHub Container Registry (GHC
 
 ---
 
-## 📂 Estructura del repositorio
+## 📂 Estructura del Proyecto
 
 breast_cancer_api/
 │
