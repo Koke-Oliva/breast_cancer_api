@@ -1,9 +1,27 @@
 FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    MODEL_PATH=/app/artifacts/model.pkl \
+    MAX_BATCH_SIZE=100
+
 WORKDIR /app
+
+RUN addgroup --system app && adduser --system --ingroup app app
+
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-COPY src ./src
-COPY artifacts/model.pkl ./artifacts/model.pkl
+RUN python -m pip install --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
+
+COPY --chown=app:app src ./src
+COPY --chown=app:app artifacts ./artifacts
+
+USER app
+
 EXPOSE 8080
-ENV MODEL_PATH=/app/artifacts/model.pkl
-CMD ["python", "-m", "src.main"]
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/api/health', timeout=3)"
+
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "--threads", "2", "--timeout", "60", "src.main:create_app()"]

@@ -1,24 +1,24 @@
-# tests/test_model.py
-import os
-import pytest
-import joblib
-import numpy as np
+from pathlib import Path
 
-MODEL_PATH = os.getenv("MODEL_PATH", "artifacts/model.pkl")
+from src.api import model as model_service
 
-@pytest.mark.parametrize("features", [
-    # Un ejemplo de instancia con 30 valores (dataset Breast Cancer)
-    np.random.rand(30).tolist()
-])
-def test_model_prediction(features):
-    assert os.path.exists(MODEL_PATH), f"Modelo no encontrado en {MODEL_PATH}"
 
-    # Cargar modelo
-    model = joblib.load(MODEL_PATH)
+def test_model_bundle_is_versioned_and_complete():
+    assert Path(model_service.MODEL_PATH).exists()
 
-    # Convertir a numpy array y hacer predicción
-    X = np.array([features], dtype=float)
-    y_pred = model.predict(X)
+    bundle = model_service.get_bundle()
 
-    # Verificamos que la predicción sea 0 o 1
-    assert y_pred[0] in [0, 1]
+    assert bundle["model_version"]
+    assert len(bundle["feature_names"]) == 30
+    assert set(bundle["feature_names"]) == set(bundle["feature_ranges"])
+    assert bundle["positive_class"] == 1
+    assert bundle["label_mapping"][0] == "benign"
+    assert bundle["label_mapping"][1] == "malignant"
+
+
+def test_contract_contains_training_ranges():
+    contract = model_service.get_contract()
+
+    assert len(contract["features"]) == 30
+    for feature in contract["features"]:
+        assert feature["training_min"] <= feature["training_max"]
