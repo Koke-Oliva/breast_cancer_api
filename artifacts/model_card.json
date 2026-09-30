@@ -3,8 +3,8 @@
   "model_version": "1.0.0",
   "artifact": "artifacts/model.pkl",
   "artifact_sha256": "42034e0f08a7d7f7b8e54756c52706ea12746eba6349fc8e21d43391cecf1ed8",
-  "trained_at_utc": "2026-09-30T22:37:45.222783+00:00",
-  "git_commit": "7ba1f1a6c67cca8690e0a322bdee9a6d36cf0d57",
+  "trained_at_utc": "2026-09-30T22:37:49.873771+00:00",
+  "git_commit": "af812989a6b2072e464ec9e222b63d931ee9ed03",
   "dataset": {
     "name": "Breast Cancer Wisconsin Diagnostic",
     "source": "sklearn.datasets.load_breast_cancer",
@@ -67,11 +67,11 @@
     "f1": 0.9512195121951219,
     "roc_auc": 0.9973544973544973,
     "pr_auc": 0.9956884000651155,
-    "brier": 0.028520458998083666
+    "brier": 0.02852045899808367
   },
   "calibration": {
     "metric": "brier_score_loss",
-    "brier": 0.028520458998083666,
+    "brier": 0.02852045899808367,
     "reliability_plot": "artifacts/calibration_curve.png"
   },
   "features": [
