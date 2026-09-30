@@ -1,0 +1,271 @@
+{
+  "model_name": "Breast Cancer Random Forest API",
+  "model_version": "1.0.0",
+  "artifact": "artifacts/model.pkl",
+  "artifact_sha256": "42034e0f08a7d7f7b8e54756c52706ea12746eba6349fc8e21d43391cecf1ed8",
+  "trained_at_utc": "2026-09-30T22:30:08.918518+00:00",
+  "git_commit": "e744aacbbd117505a55628c2a3f4c1dbb59f0411",
+  "dataset": {
+    "name": "Breast Cancer Wisconsin Diagnostic",
+    "source": "sklearn.datasets.load_breast_cancer",
+    "n_samples": 569,
+    "n_features": 30,
+    "class_definition": {
+      "0": "benign",
+      "1": "malignant"
+    },
+    "positive_class": "malignant"
+  },
+  "split": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "stratified": true,
+    "train_samples": 455,
+    "test_samples": 114
+  },
+  "model": {
+    "type": "RandomForestClassifier",
+    "best_params": {
+      "max_depth": 8,
+      "max_features": "sqrt",
+      "min_samples_leaf": 2,
+      "n_estimators": 400
+    },
+    "selection_metric": "roc_auc",
+    "best_cv_roc_auc": 0.9889576883384933
+  },
+  "cross_validation": {
+    "strategy": "StratifiedKFold",
+    "folds": 5,
+    "metrics": {
+      "accuracy": {
+        "mean": 0.9582417582417582,
+        "std": 0.016150481820548422
+      },
+      "precision": {
+        "mean": 0.9469856124267888,
+        "std": 0.021209403564487837
+      },
+      "recall": {
+        "mean": 0.9411764705882353,
+        "std": 0.032218973970892135
+      },
+      "f1": {
+        "mean": 0.9437921991993068,
+        "std": 0.022267411548596818
+      },
+      "roc_auc": {
+        "mean": 0.9889576883384933,
+        "std": 0.005620329743731721
+      }
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.9649122807017544,
+    "precision": 0.975,
+    "recall": 0.9285714285714286,
+    "f1": 0.9512195121951219,
+    "roc_auc": 0.9973544973544973,
+    "pr_auc": 0.9956884000651155,
+    "brier": 0.028520458998083666
+  },
+  "calibration": {
+    "metric": "brier_score_loss",
+    "brier": 0.028520458998083666,
+    "reliability_plot": "artifacts/calibration_curve.png"
+  },
+  "features": [
+    {
+      "name": "mean radius",
+      "type": "number",
+      "training_min": 6.981,
+      "training_max": 28.11
+    },
+    {
+      "name": "mean texture",
+      "type": "number",
+      "training_min": 9.71,
+      "training_max": 39.28
+    },
+    {
+      "name": "mean perimeter",
+      "type": "number",
+      "training_min": 43.79,
+      "training_max": 188.5
+    },
+    {
+      "name": "mean area",
+      "type": "number",
+      "training_min": 143.5,
+      "training_max": 2501.0
+    },
+    {
+      "name": "mean smoothness",
+      "type": "number",
+      "training_min": 0.06251,
+      "training_max": 0.1634
+    },
+    {
+      "name": "mean compactness",
+      "type": "number",
+      "training_min": 0.01938,
+      "training_max": 0.3454
+    },
+    {
+      "name": "mean concavity",
+      "type": "number",
+      "training_min": 0.0,
+      "training_max": 0.4268
+    },
+    {
+      "name": "mean concave points",
+      "type": "number",
+      "training_min": 0.0,
+      "training_max": 0.2012
+    },
+    {
+      "name": "mean symmetry",
+      "type": "number",
+      "training_min": 0.106,
+      "training_max": 0.304
+    },
+    {
+      "name": "mean fractal dimension",
+      "type": "number",
+      "training_min": 0.05024,
+      "training_max": 0.09744
+    },
+    {
+      "name": "radius error",
+      "type": "number",
+      "training_min": 0.1115,
+      "training_max": 2.873
+    },
+    {
+      "name": "texture error",
+      "type": "number",
+      "training_min": 0.3602,
+      "training_max": 4.885
+    },
+    {
+      "name": "perimeter error",
+      "type": "number",
+      "training_min": 0.757,
+      "training_max": 21.98
+    },
+    {
+      "name": "area error",
+      "type": "number",
+      "training_min": 6.802,
+      "training_max": 542.2
+    },
+    {
+      "name": "smoothness error",
+      "type": "number",
+      "training_min": 0.001713,
+      "training_max": 0.03113
+    },
+    {
+      "name": "compactness error",
+      "type": "number",
+      "training_min": 0.002252,
+      "training_max": 0.1064
+    },
+    {
+      "name": "concavity error",
+      "type": "number",
+      "training_min": 0.0,
+      "training_max": 0.396
+    },
+    {
+      "name": "concave points error",
+      "type": "number",
+      "training_min": 0.0,
+      "training_max": 0.05279
+    },
+    {
+      "name": "symmetry error",
+      "type": "number",
+      "training_min": 0.007882,
+      "training_max": 0.07895
+    },
+    {
+      "name": "fractal dimension error",
+      "type": "number",
+      "training_min": 0.0008948,
+      "training_max": 0.02984
+    },
+    {
+      "name": "worst radius",
+      "type": "number",
+      "training_min": 7.93,
+      "training_max": 36.04
+    },
+    {
+      "name": "worst texture",
+      "type": "number",
+      "training_min": 12.02,
+      "training_max": 49.54
+    },
+    {
+      "name": "worst perimeter",
+      "type": "number",
+      "training_min": 50.41,
+      "training_max": 251.2
+    },
+    {
+      "name": "worst area",
+      "type": "number",
+      "training_min": 185.2,
+      "training_max": 4254.0
+    },
+    {
+      "name": "worst smoothness",
+      "type": "number",
+      "training_min": 0.07117,
+      "training_max": 0.2226
+    },
+    {
+      "name": "worst compactness",
+      "type": "number",
+      "training_min": 0.02729,
+      "training_max": 1.058
+    },
+    {
+      "name": "worst concavity",
+      "type": "number",
+      "training_min": 0.0,
+      "training_max": 1.252
+    },
+    {
+      "name": "worst concave points",
+      "type": "number",
+      "training_min": 0.0,
+      "training_max": 0.291
+    },
+    {
+      "name": "worst symmetry",
+      "type": "number",
+      "training_min": 0.1565,
+      "training_max": 0.6638
+    },
+    {
+      "name": "worst fractal dimension",
+      "type": "number",
+      "training_min": 0.05504,
+      "training_max": 0.2075
+    }
+  ],
+  "limitations": [
+    "Evaluación interna sobre un único split estratificado; no sustituye validación externa.",
+    "El dataset es pequeño y proviene de mediciones diagnósticas estructuradas, no de población clínica general.",
+    "Las probabilidades se evalúan con Brier y curva de calibración, pero el modelo no se recalibra.",
+    "Los rangos de entrada corresponden al dominio observado en entrenamiento y no constituyen límites clínicos.",
+    "El servicio es demostrativo y no debe utilizarse para diagnóstico ni decisión clínica."
+  ],
+  "environment": {
+    "python": "3.11.16",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "scikit_learn": "1.6.1"
+  }
+}
