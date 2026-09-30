@@ -164,9 +164,35 @@ jobs:
             git push origin HEAD:${{ github.head_ref }}
           fi
 
-  build-and-push:
+  persist-main-artifacts:
     runs-on: ubuntu-latest
     needs: docker-smoke
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download trained model artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: model-artifacts
+          path: artifacts
+
+      - name: Commit reproducible artifacts to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artifacts/model.pkl artifacts/model_card.json artifacts/calibration_curve.png
+          if ! git diff --cached --quiet; then
+            git commit -m "[skip ci] chore: refresh trained model artifacts"
+            git push origin HEAD:main
+          fi
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: [docker-smoke, persist-main-artifacts]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     env:
       REGISTRY: ghcr.io
